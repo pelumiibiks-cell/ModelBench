@@ -1,0 +1,19 @@
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+.venv/
+venv/
+.ruff_cache/
+.mypy_cache/
+build/
+dist/
+.claude/
+.DS_Store
+Thumbs.db
+
+# raw per-run model outputs and logs are large and regenerable - only the
+# aggregated results/*.csv and docs/figures are checked in
+results/runs/
+results/run_log.txt
