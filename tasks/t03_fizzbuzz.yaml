@@ -1,0 +1,14 @@
+id: t03_fizzbuzz
+category: trivial
+prompt: Write a function that takes an integer n and returns a list of strings from 1 to n, where multiples
+  of 3 are 'Fizz', multiples of 5 are 'Buzz', multiples of both are 'FizzBuzz', and all other numbers
+  are their string form.
+entry_point: fizzbuzz
+reference_solution: "def fizzbuzz(n):\n    result = []\n    for i in range(1, n + 1):\n        if i %\
+  \ 15 == 0:\n            result.append('FizzBuzz')\n        elif i % 3 == 0:\n            result.append('Fizz')\n\
+  \        elif i % 5 == 0:\n            result.append('Buzz')\n        else:\n            result.append(str(i))\n\
+  \    return result\n"
+test_code: "from solution import fizzbuzz\n\ndef test_fifteen():\n    out = fizzbuzz(15)\n    assert out[2]\
+  \ == 'Fizz'\n    assert out[4] == 'Buzz'\n    assert out[14] == 'FizzBuzz'\n    assert out[0] == '1'\n\
+  \ndef test_length():\n    assert len(fizzbuzz(20)) == 20\n"
+timeout_s: 10.0

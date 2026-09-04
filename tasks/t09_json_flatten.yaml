@@ -1,0 +1,16 @@
+id: t09_json_flatten
+category: standard
+prompt: 'Write a function that flattens a nested dictionary into a single-level dictionary, joining nested
+  keys with a dot (''.''). For example {''a'': {''b'': 1, ''c'': 2}} becomes {''a.b'': 1, ''a.c'': 2}.
+  Lists should be left as-is (not flattened further).'
+entry_point: flatten_dict
+reference_solution: "def flatten_dict(d, prefix=''):\n    result = {}\n    for key, value in d.items():\n\
+  \        full_key = f'{prefix}.{key}' if prefix else str(key)\n        if isinstance(value, dict):\n\
+  \            result.update(flatten_dict(value, full_key))\n        else:\n            result[full_key]\
+  \ = value\n    return result\n"
+test_code: "from solution import flatten_dict\n\ndef test_basic():\n    assert flatten_dict({'a': {'b':\
+  \ 1, 'c': 2}}) == {'a.b': 1, 'a.c': 2}\n\ndef test_nested_deeper():\n    assert flatten_dict({'a': {'b':\
+  \ {'c': 1}}}) == {'a.b.c': 1}\n\ndef test_flat_input():\n    assert flatten_dict({'x': 1, 'y': 2}) ==\
+  \ {'x': 1, 'y': 2}\n\ndef test_list_left_alone():\n    assert flatten_dict({'a': {'b': [1, 2]}}) ==\
+  \ {'a.b': [1, 2]}\n"
+timeout_s: 10.0

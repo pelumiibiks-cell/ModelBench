@@ -1,0 +1,9 @@
+id: t04_max_of_three
+category: trivial
+prompt: Write a function that takes three numbers and returns the largest one.
+entry_point: max_of_three
+reference_solution: "def max_of_three(a, b, c):\n    return max(a, b, c)\n"
+test_code: "from solution import max_of_three\n\ndef test_first_largest():\n    assert max_of_three(5,\
+  \ 2, 3) == 5\n\ndef test_negatives():\n    assert max_of_three(-5, -2, -3) == -2\n\ndef test_ties():\n\
+  \    assert max_of_three(4, 4, 2) == 4\n"
+timeout_s: 10.0

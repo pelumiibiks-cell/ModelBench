@@ -1,0 +1,16 @@
+id: t16_edit_distance
+category: hard
+prompt: Write a function edit_distance(word1, word2) that returns the minimum number of single-character
+  insertions, deletions, or substitutions required to transform word1 into word2 (Levenshtein distance).
+entry_point: edit_distance
+reference_solution: "def edit_distance(word1, word2):\n    m, n = len(word1), len(word2)\n    dp = [[0]\
+  \ * (n + 1) for _ in range(m + 1)]\n    for i in range(m + 1):\n        dp[i][0] = i\n    for j in range(n\
+  \ + 1):\n        dp[0][j] = j\n    for i in range(1, m + 1):\n        for j in range(1, n + 1):\n  \
+  \          if word1[i - 1] == word2[j - 1]:\n                dp[i][j] = dp[i - 1][j - 1]\n         \
+  \   else:\n                dp[i][j] = 1 + min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1])\n    return\
+  \ dp[m][n]\n"
+test_code: "from solution import edit_distance\n\ndef test_classic_example():\n    assert edit_distance('horse',\
+  \ 'ros') == 3\n\ndef test_identical():\n    assert edit_distance('abc', 'abc') == 0\n\ndef test_empty_source():\n\
+  \    assert edit_distance('', 'abc') == 3\n\ndef test_one_substitution():\n    assert edit_distance('cat',\
+  \ 'bat') == 1\n"
+timeout_s: 10.0

@@ -1,0 +1,14 @@
+id: a04_long_but_trivial
+category: adversarial_long_trivial
+prompt: In our codebase we follow a strict convention that every public function includes a clear docstring,
+  type hints where practical, and defensive handling of common edge cases, because this module is imported
+  by several downstream services owned by other teams and any ambiguity here tends to produce support
+  tickets. With that context in mind, and bearing in mind our general engineering principles around readability,
+  maintainability, and testability, please implement a function that takes a list of strings and returns
+  only the strings that are longer than 3 characters.
+entry_point: filter_long_strings
+reference_solution: "def filter_long_strings(strings):\n    return [s for s in strings if len(s) > 3]\n"
+test_code: "from solution import filter_long_strings\n\ndef test_basic():\n    assert filter_long_strings(['a',\
+  \ 'ab', 'abcd', 'abcde']) == ['abcd', 'abcde']\n\ndef test_none_qualify():\n    assert filter_long_strings(['a',\
+  \ 'bb', 'ccc']) == []\n\ndef test_empty_list():\n    assert filter_long_strings([]) == []\n"
+timeout_s: 10.0

@@ -1,0 +1,11 @@
+id: a05_keyword_heavy_easy
+category: adversarial_keyword_easy
+prompt: Implement a distributed, thread-safe, asynchronous, high-performance, fault-tolerant, horizontally-scalable
+  microservice-ready function using advanced concurrency primitives and enterprise-grade architecture
+  patterns that takes two integers and returns their sum.
+entry_point: add_two_numbers
+reference_solution: "def add_two_numbers(a, b):\n    return a + b\n"
+test_code: "from solution import add_two_numbers\n\ndef test_basic():\n    assert add_two_numbers(2, 3)\
+  \ == 5\n\ndef test_negatives():\n    assert add_two_numbers(-1, -1) == -2\n\ndef test_zero():\n    assert\
+  \ add_two_numbers(0, 5) == 5\n"
+timeout_s: 10.0

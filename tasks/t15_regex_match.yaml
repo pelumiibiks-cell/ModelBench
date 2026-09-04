@@ -1,0 +1,18 @@
+id: t15_regex_match
+category: hard
+prompt: Write a function is_match(s, pattern) implementing regular expression matching supporting '.'
+  (matches any single character) and '*' (matches zero or more of the preceding element). The match must
+  cover the ENTIRE input string, not just a prefix.
+entry_point: is_match
+reference_solution: "def is_match(s, pattern):\n    memo = {}\n    def dp(i, j):\n        if (i, j) in\
+  \ memo:\n            return memo[(i, j)]\n        if j == len(pattern):\n            result = i == len(s)\n\
+  \        else:\n            first_match = i < len(s) and pattern[j] in (s[i], '.')\n            if j\
+  \ + 1 < len(pattern) and pattern[j + 1] == '*':\n                result = dp(i, j + 2) or (first_match\
+  \ and dp(i + 1, j))\n            else:\n                result = first_match and dp(i + 1, j + 1)\n\
+  \        memo[(i, j)] = result\n        return result\n    return dp(0, 0)\n"
+test_code: "from solution import is_match\n\ndef test_star_zero_or_more():\n    assert is_match('aa',\
+  \ 'a*') is True\n\ndef test_dot_star():\n    assert is_match('ab', '.*') is True\n\ndef test_no_match():\n\
+  \    assert is_match('mississippi', 'mis*is*p*.') is False\n\ndef test_exact():\n    assert is_match('aab',\
+  \ 'c*a*b') is True\n\ndef test_partial_prefix_only_should_fail():\n    assert is_match('aaa', 'a') is\
+  \ False\n"
+timeout_s: 10.0

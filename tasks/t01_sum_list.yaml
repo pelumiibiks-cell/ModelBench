@@ -1,0 +1,9 @@
+id: t01_sum_list
+category: trivial
+prompt: Write a function that returns the sum of a list of integers.
+entry_point: sum_list
+reference_solution: "def sum_list(numbers):\n    return sum(numbers)\n"
+test_code: "from solution import sum_list\n\ndef test_basic():\n    assert sum_list([1, 2, 3]) == 6\n\n\
+  def test_empty():\n    assert sum_list([]) == 0\n\ndef test_negatives():\n    assert sum_list([-1, -2,\
+  \ 3]) == 0\n"
+timeout_s: 10.0

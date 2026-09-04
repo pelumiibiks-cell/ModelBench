@@ -1,0 +1,19 @@
+id: t14_lca_binary_tree
+category: hard
+prompt: You're given a binary tree where each node is a dict with keys 'val', 'left', 'right' (children
+  are None if absent, or another such dict). Write a function lowest_common_ancestor(root, p, q) that
+  returns the value of the lowest common ancestor of the nodes with values p and q. Both p and q are guaranteed
+  to exist in the tree.
+entry_point: lowest_common_ancestor
+reference_solution: "def lowest_common_ancestor(root, p, q):\n    if root is None:\n        return None\n\
+  \    if root['val'] == p or root['val'] == q:\n        return root['val']\n    left = lowest_common_ancestor(root.get('left'),\
+  \ p, q)\n    right = lowest_common_ancestor(root.get('right'), p, q)\n    if left is not None and right\
+  \ is not None:\n        return root['val']\n    return left if left is not None else right\n"
+test_code: "from solution import lowest_common_ancestor\n\nTREE = {\n    'val': 3,\n    'left': {'val':\
+  \ 5, 'left': {'val': 6, 'left': None, 'right': None},\n             'right': {'val': 2, 'left': {'val':\
+  \ 7, 'left': None, 'right': None},\n                       'right': {'val': 4, 'left': None, 'right':\
+  \ None}}},\n    'right': {'val': 1, 'left': None, 'right': None},\n}\n\ndef test_lca_across_subtrees():\n\
+  \    assert lowest_common_ancestor(TREE, 5, 1) == 3\n\ndef test_lca_within_subtree():\n    assert lowest_common_ancestor(TREE,\
+  \ 6, 4) == 5\n\ndef test_ancestor_is_one_of_the_nodes():\n    assert lowest_common_ancestor(TREE, 5,\
+  \ 4) == 5\n"
+timeout_s: 10.0

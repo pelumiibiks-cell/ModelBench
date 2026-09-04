@@ -1,0 +1,11 @@
+id: a06_keyword_heavy_easy
+category: adversarial_keyword_easy
+prompt: Using cutting-edge machine-learning-adjacent, AI-powered, cloud-native, quantum-ready algorithmic
+  techniques and industry-best-practice design patterns, build a robust, enterprise-scale function that
+  reverses a given string.
+entry_point: reverse_string
+reference_solution: "def reverse_string(s):\n    return s[::-1]\n"
+test_code: "from solution import reverse_string\n\ndef test_basic():\n    assert reverse_string('hello')\
+  \ == 'olleh'\n\ndef test_empty():\n    assert reverse_string('') == ''\n\ndef test_palindrome_unchanged():\n\
+  \    assert reverse_string('aba') == 'aba'\n"
+timeout_s: 10.0

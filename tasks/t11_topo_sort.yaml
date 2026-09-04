@@ -1,0 +1,20 @@
+id: t11_topo_sort
+category: standard
+prompt: Write a function that takes an integer n (nodes numbered 0..n-1) and a list of [a, b] edges meaning
+  'a must come before b', and returns a valid topological ordering as a list. If no valid ordering exists
+  (a cycle), return None.
+entry_point: topo_sort
+reference_solution: "def topo_sort(n, edges):\n    from collections import deque\n    indegree = [0] *\
+  \ n\n    graph = {i: [] for i in range(n)}\n    for a, b in edges:\n        graph[a].append(b)\n   \
+  \     indegree[b] += 1\n    queue = deque(i for i in range(n) if indegree[i] == 0)\n    order = []\n\
+  \    while queue:\n        node = queue.popleft()\n        order.append(node)\n        for nxt in graph[node]:\n\
+  \            indegree[nxt] -= 1\n            if indegree[nxt] == 0:\n                queue.append(nxt)\n\
+  \    return order if len(order) == n else None\n"
+test_code: "from solution import topo_sort\n\ndef _is_valid_order(order, n, edges):\n    if order is None\
+  \ or sorted(order) != list(range(n)):\n        return False\n    position = {node: i for i, node in\
+  \ enumerate(order)}\n    return all(position[a] < position[b] for a, b in edges)\n\ndef test_valid_dag():\n\
+  \    order = topo_sort(4, [[0, 1], [0, 2], [1, 3], [2, 3]])\n    assert _is_valid_order(order, 4, [[0,\
+  \ 1], [0, 2], [1, 3], [2, 3]])\n\ndef test_cycle_returns_none():\n    assert topo_sort(3, [[0, 1], [1,\
+  \ 2], [2, 0]]) is None\n\ndef test_no_edges():\n    order = topo_sort(3, [])\n    assert sorted(order)\
+  \ == [0, 1, 2]\n"
+timeout_s: 10.0

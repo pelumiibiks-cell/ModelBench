@@ -1,0 +1,15 @@
+id: a03_long_but_trivial
+category: adversarial_long_trivial
+prompt: Our team maintains a small internal reporting utility used across several dashboards in the analytics
+  platform. As part of a broader effort to standardize how we compute basic descriptive statistics before
+  they get passed into the visualization layer, we need a well-documented, production-quality utility
+  function. It should be robust, efficient, and follow good engineering practice, since it will be called
+  frequently in hot paths across the reporting pipeline and its output feeds directly into charts that
+  stakeholders review weekly. Please write a function that computes the arithmetic mean (average) of a
+  list of numbers and returns it as a float.
+entry_point: compute_mean
+reference_solution: "def compute_mean(numbers):\n    return sum(numbers) / len(numbers)\n"
+test_code: "from solution import compute_mean\n\ndef test_basic():\n    assert compute_mean([2, 4, 6])\
+  \ == 4.0\n\ndef test_single_value():\n    assert compute_mean([5]) == 5.0\n\ndef test_negatives():\n\
+  \    assert compute_mean([-2, 2]) == 0.0\n"
+timeout_s: 10.0

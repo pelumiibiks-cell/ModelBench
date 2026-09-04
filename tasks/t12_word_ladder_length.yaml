@@ -1,0 +1,20 @@
+id: t12_word_ladder_length
+category: standard
+prompt: Write a function word_ladder_length(begin_word, end_word, word_list) that returns the number of
+  words in the shortest transformation sequence from begin_word to end_word, changing one letter at a
+  time, where every intermediate word must be in word_list. Return 0 if no such sequence exists. The length
+  counts both begin_word and end_word.
+entry_point: word_ladder_length
+reference_solution: "from collections import deque\n\ndef word_ladder_length(begin_word, end_word, word_list):\n\
+  \    words = set(word_list)\n    if end_word not in words:\n        return 0\n    queue = deque([(begin_word,\
+  \ 1)])\n    visited = {begin_word}\n    alphabet = 'abcdefghijklmnopqrstuvwxyz'\n    while queue:\n\
+  \        word, steps = queue.popleft()\n        if word == end_word:\n            return steps\n   \
+  \     for i in range(len(word)):\n            for ch in alphabet:\n                candidate = word[:i]\
+  \ + ch + word[i + 1:]\n                if candidate in words and candidate not in visited:\n       \
+  \             visited.add(candidate)\n                    queue.append((candidate, steps + 1))\n   \
+  \ return 0\n"
+test_code: "from solution import word_ladder_length\n\ndef test_reachable():\n    result = word_ladder_length('hit',\
+  \ 'cog', ['hot', 'dot', 'dog', 'lot', 'log', 'cog'])\n    assert result == 5\n\ndef test_end_not_in_list():\n\
+  \    assert word_ladder_length('hit', 'cog', ['hot', 'dot', 'dog', 'lot', 'log']) == 0\n\ndef test_direct_neighbor():\n\
+  \    assert word_ladder_length('hot', 'dot', ['dot']) == 2\n"
+timeout_s: 10.0

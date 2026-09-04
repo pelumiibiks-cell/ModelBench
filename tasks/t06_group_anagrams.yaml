@@ -1,0 +1,15 @@
+id: t06_group_anagrams
+category: standard
+prompt: Write a function that takes a list of strings and groups the anagrams together, returning a list
+  of lists. Words that are anagrams of each other (same letters, any order) go in the same group. The
+  order of groups and the order of words within a group do not matter for correctness.
+entry_point: group_anagrams
+reference_solution: "def group_anagrams(words):\n    groups = {}\n    for word in words:\n        key\
+  \ = ''.join(sorted(word))\n        groups.setdefault(key, []).append(word)\n    return list(groups.values())\n"
+test_code: "from solution import group_anagrams\n\ndef _normalize(groups):\n    return sorted(sorted(g)\
+  \ for g in groups)\n\ndef test_basic_grouping():\n    result = group_anagrams(['eat', 'tea', 'tan',\
+  \ 'ate', 'nat', 'bat'])\n    expected = [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]\n    assert\
+  \ _normalize(result) == _normalize(expected)\n\ndef test_empty_input():\n    assert group_anagrams([])\
+  \ == []\n\ndef test_no_anagrams():\n    result = group_anagrams(['abc', 'def'])\n    assert _normalize(result)\
+  \ == _normalize([['abc'], ['def']])\n"
+timeout_s: 10.0

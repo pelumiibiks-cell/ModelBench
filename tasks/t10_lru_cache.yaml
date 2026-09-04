@@ -1,0 +1,20 @@
+id: t10_lru_cache
+category: standard
+prompt: Implement a class LRUCache with a constructor taking a capacity, a get(key) method returning the
+  value or -1 if missing, and a put(key, value) method. When capacity is exceeded, evict the least recently
+  used item. Both get and put count as 'use' for recency purposes.
+entry_point: LRUCache
+reference_solution: "from collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity):\n\
+  \        self.capacity = capacity\n        self.store = OrderedDict()\n\n    def get(self, key):\n \
+  \       if key not in self.store:\n            return -1\n        self.store.move_to_end(key)\n    \
+  \    return self.store[key]\n\n    def put(self, key, value):\n        if key in self.store:\n     \
+  \       self.store.move_to_end(key)\n        self.store[key] = value\n        if len(self.store) > self.capacity:\n\
+  \            self.store.popitem(last=False)\n"
+test_code: "from solution import LRUCache\n\ndef test_basic_get_put():\n    cache = LRUCache(2)\n    cache.put(1,\
+  \ 'a')\n    cache.put(2, 'b')\n    assert cache.get(1) == 'a'\n\ndef test_eviction():\n    cache = LRUCache(2)\n\
+  \    cache.put(1, 'a')\n    cache.put(2, 'b')\n    cache.put(3, 'c')  # evicts 1, since 2 was untouched\
+  \ but 1 is oldest\n    assert cache.get(1) == -1\n    assert cache.get(2) == 'b'\n    assert cache.get(3)\
+  \ == 'c'\n\ndef test_get_refreshes_recency():\n    cache = LRUCache(2)\n    cache.put(1, 'a')\n    cache.put(2,\
+  \ 'b')\n    cache.get(1)  # 1 is now most recently used\n    cache.put(3, 'c')  # should evict 2, not\
+  \ 1\n    assert cache.get(2) == -1\n    assert cache.get(1) == 'a'\n"
+timeout_s: 10.0

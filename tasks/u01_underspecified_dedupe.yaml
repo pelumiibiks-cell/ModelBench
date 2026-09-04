@@ -1,0 +1,20 @@
+id: u01_underspecified_dedupe
+category: underspecified
+prompt: Write a function that cleans up a list of user records for a mailing list export.
+entry_point: clean_records
+reference_solution: "def clean_records(records):\n    seen_emails = set()\n    cleaned = []\n    for record\
+  \ in records:\n        email = (record.get('email') or '').strip().lower()\n        if not email or\
+  \ email in seen_emails:\n            continue\n        seen_emails.add(email)\n        cleaned.append({**record,\
+  \ 'email': email})\n    return cleaned\n"
+test_code: "from solution import clean_records\n\n# The prompt is deliberately underspecified - no schema,\
+  \ no definition of\n# 'clean'. This task grades on whether the model asks a clarifying\n# assumption\
+  \ in comments/behavior at all, and specifically on the one\n# behavior almost any reasonable reading\
+  \ of 'clean up for a mailing list\n# export' should produce: dropping rows with no usable email, and\
+  \ not\n# crashing on messy input. It does NOT grade on exact-match output shape,\n# since no schema\
+  \ was given.\n\ndef test_drops_records_with_no_email():\n    records = [{'name': 'A', 'email': 'a@example.com'},\
+  \ {'name': 'B', 'email': ''}]\n    result = clean_records(records)\n    emails = [r.get('email') for\
+  \ r in result if isinstance(r, dict)]\n    assert 'a@example.com' in emails or 'a@example.com'.lower()\
+  \ in [e.lower() if e else e for e in emails]\n    assert len(result) <= len(records)\n\ndef test_does_not_crash_on_missing_key():\n\
+  \    records = [{'name': 'C'}]\n    result = clean_records(records)  # should not raise\n    assert\
+  \ isinstance(result, list)\n"
+timeout_s: 10.0

@@ -1,0 +1,11 @@
+id: t02_is_palindrome
+category: trivial
+prompt: Write a function that returns True if a given string is a palindrome (reads the same forwards
+  and backwards), ignoring case, and False otherwise.
+entry_point: is_palindrome
+reference_solution: "def is_palindrome(s):\n    s = s.lower()\n    return s == s[::-1]\n"
+test_code: "from solution import is_palindrome\n\ndef test_palindrome():\n    assert is_palindrome('level')\
+  \ is True\n\ndef test_case_insensitive():\n    assert is_palindrome('Level') is True\n\ndef test_not_palindrome():\n\
+  \    assert is_palindrome('hello') is False\n\ndef test_single_char():\n    assert is_palindrome('a')\
+  \ is True\n"
+timeout_s: 10.0

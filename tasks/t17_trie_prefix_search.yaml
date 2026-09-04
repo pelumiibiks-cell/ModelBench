@@ -1,0 +1,19 @@
+id: t17_trie_prefix_search
+category: hard
+prompt: Implement a class Trie with insert(word), search(word) (exact match, returns bool), and starts_with(prefix)
+  (returns bool, True if any inserted word starts with prefix).
+entry_point: Trie
+reference_solution: "class Trie:\n    def __init__(self):\n        self.children = {}\n        self.is_word\
+  \ = False\n\n    def insert(self, word):\n        node = self\n        for ch in word:\n           \
+  \ node = node.children.setdefault(ch, Trie())\n        node.is_word = True\n\n    def _find(self, word):\n\
+  \        node = self\n        for ch in word:\n            if ch not in node.children:\n           \
+  \     return None\n            node = node.children[ch]\n        return node\n\n    def search(self,\
+  \ word):\n        node = self._find(word)\n        return node is not None and node.is_word\n\n    def\
+  \ starts_with(self, prefix):\n        return self._find(prefix) is not None\n"
+test_code: "from solution import Trie\n\ndef test_insert_and_search():\n    trie = Trie()\n    trie.insert('apple')\n\
+  \    assert trie.search('apple') is True\n    assert trie.search('app') is False\n\ndef test_starts_with():\n\
+  \    trie = Trie()\n    trie.insert('apple')\n    assert trie.starts_with('app') is True\n    assert\
+  \ trie.starts_with('b') is False\n\ndef test_multiple_words():\n    trie = Trie()\n    trie.insert('cat')\n\
+  \    trie.insert('car')\n    assert trie.search('cat') is True\n    assert trie.search('ca') is False\n\
+  \    assert trie.starts_with('ca') is True\n"
+timeout_s: 10.0

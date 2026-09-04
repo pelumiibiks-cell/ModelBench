@@ -1,0 +1,13 @@
+id: a01_short_but_hard
+category: adversarial_short_hard
+prompt: Write a function that counts the number of ways to make change for a given amount using an unlimited
+  supply of the given coin denominations (order does not matter, i.e. [1,2] and [2,1] count as one way).
+entry_point: count_change_ways
+reference_solution: "def count_change_ways(amount, coins):\n    dp = [0] * (amount + 1)\n    dp[0] = 1\n\
+  \    for coin in coins:\n        for x in range(coin, amount + 1):\n            dp[x] += dp[x - coin]\n\
+  \    return dp[amount]\n"
+test_code: "from solution import count_change_ways\n\ndef test_basic():\n    assert count_change_ways(5,\
+  \ [1, 2, 5]) == 4\n\ndef test_zero_amount():\n    assert count_change_ways(0, [1, 2]) == 1\n\ndef test_no_way():\n\
+  \    assert count_change_ways(3, [2]) == 0\n\ndef test_single_coin():\n    assert count_change_ways(10,\
+  \ [10]) == 1\n"
+timeout_s: 10.0
