@@ -1,0 +1,26 @@
+[
+  {
+    "id": "cal01_naming",
+    "good_score": 1.0,
+    "bad_score": 0.2,
+    "separated": true,
+    "good_reasoning": "The function is concise, uses clear type hints, and idiomatically computes the average in a single readable line.",
+    "bad_reasoning": "The code uses completely uninformative single-letter variable names and manually implements built-in operations like sum and len, making it hard to read."
+  },
+  {
+    "id": "cal02_nesting",
+    "good_score": 1.0,
+    "bad_score": 0.4,
+    "separated": true,
+    "good_reasoning": "The code is concise, perfectly named, uses appropriate type hints, and clearly implements the required logic with zero unnecessary complexity.",
+    "bad_reasoning": "The code has unnecessary nesting and redundant if-else branches that could be simplified into a single boolean expression."
+  },
+  {
+    "id": "cal03_structure",
+    "good_score": 1.0,
+    "bad_score": 0.1,
+    "separated": true,
+    "good_reasoning": "The function is exceptionally clean, uses idiomatic Python with a set for O(1) lookups, and has clear variable names.",
+    "bad_reasoning": "The code uses single-letter variable names, lacks meaningful structure, and implements an inefficient $O(N^2)$ algorithm instead of using Python's built-in `dict.fromkeys()`."
+  }
+]
