@@ -17,4 +17,4 @@ Generated from `results/benchmark_raw.csv` (48 rows: 24 tasks x 2 models x 1 rep
 | adversarial_keyword_easy | 50.0% (2/2) | 50.0% (2/2) |
 | underspecified | n/a (quota-blocked) | 100.0% (1/1) |
 
-`gemini-flash`'s 8 quota-blocked cells all returned the same error: `429 - Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash`. Every failure that isn't quota-blocked is a real, evaluated failure — see `benchmark_raw.csv`'s `provider_error`/`sandbox_error` columns for the specific cause per cell.
+`gemini-flash`'s 8 quota-blocked cells all returned the same error: `429 - Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash`. Every failure that isn't quota-blocked is a real, evaluated failure. See `benchmark_raw.csv`'s `provider_error`/`sandbox_error` columns for the specific cause per cell.
