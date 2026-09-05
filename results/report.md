@@ -1,4 +1,4 @@
-# ModelBench results — run of 2026-09-04
+# ModelBench results, run of 2026-09-04
 
 Generated from `results/benchmark_raw.csv` (48 rows: 24 tasks x 2 models x 1 rep) via `modelbench/report.py`. Full narrative and caveats: [`../docs/overview.md`](../docs/overview.md).
 
